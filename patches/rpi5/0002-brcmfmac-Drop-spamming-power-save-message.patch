@@ -1,0 +1,26 @@
+From 3c8a28a55ef005d9521453070169b62955f9a501 Mon Sep 17 00:00:00 2001
+From: Steev Klimaszewski <steev@kali.org>
+Date: Mon, 5 Aug 2024 15:31:00 -0500
+Subject: [PATCH 2/2] brcmfmac: Drop spamming power save message
+
+Disable spamming whether powersave is enabled or disabled in the dmesg
+log.
+---
+ drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
+index e19c14ba35f6..d5747ea97cec 100644
+--- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
++++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
+@@ -3320,7 +3320,6 @@ brcmf_cfg80211_set_power_mgmt(struct wiphy *wiphy, struct net_device *ndev,
+ 		brcmf_dbg(INFO, "Do not enable power save for P2P clients\n");
+ 		pm = PM_OFF;
+ 	}
+-	brcmf_info("power save %s\n", (pm ? "enabled" : "disabled"));
+ 
+ 	err = brcmf_fil_cmd_int_set(ifp, BRCMF_C_SET_PM, pm);
+ 	if (err) {
+-- 
+2.45.2
+
