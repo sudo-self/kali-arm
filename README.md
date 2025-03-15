@@ -18,7 +18,7 @@ An example workflow to build a _[Raspberry Pi 4](https://www.kali.org/docs/arm/r
 
 ```
 $ cd ~/
-$ git clone https://gitlab.com/kalilinux/build-scripts/kali-arm
+$ git clone https://github.com/sudo-self/kali-arm.git
 $ cd ~/kali-arm/
 $ sudo ./common.d/build_deps.sh
 $ sudo ./raspberry-pi.sh
