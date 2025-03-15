@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kali-ARM Build-Scripts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-6">
+
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Kali-ARM Build-Scripts</h1>
+        <p class="mb-4">Kali Linux ARM build-scripts.</p>
+
+        <p class="mb-4">
+            These are the same build scripts that we use to generate the pre-generated official Kali Linux ARM images,
+            found here:
+            <a href="https://www.kali.org/get-kali/" target="_blank" class="text-blue-400 underline">https://www.kali.org/get-kali/</a>
+        </p>
+
+        <p class="mb-4">
+            There are additional scripts included in this repository, supporting more devices, but these will need to be built in order for them to be used.
+        </p>
+
+        <p class="mb-6">
+            For more information, please see:
+            <a href="https://www.kali.org/docs/arm/" target="_blank" class="text-blue-400 underline">https://www.kali.org/docs/arm/</a>
+        </p>
+
+        <hr class="border-gray-700 my-6">
+
+        <h2 class="text-2xl font-bold mb-4">Building</h2>
+        <ul class="list-disc pl-6 mb-4">
+            <li>These scripts are tested on Kali Linux <code>arm64</code>, <code>x64</code>, and <code>x86</code> installations only. <span class="text-yellow-400">(We recommend x64)</span></li>
+            <li>Run the <code>./common.d/build_deps.sh</code> script before building an image.</li>
+            <li>You will need at least **8GB of RAM or a SWAP file**.</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mb-2">Example Workflow for Raspberry Pi 4</h3>
+        <div class="bg-gray-800 p-4 rounded-md">
+<pre class="whitespace-pre-wrap">
+$ cd ~/
+$ git clone https://github.com/sudo-self/kali-arm.git
+$ cd ~/kali-arm/
+$ sudo ./common.d/build_deps.sh
+$ sudo ./raspberry-pi.sh
+</pre>
+        </div>
+
+        <p class="mt-4">
+            Depending on your system hardware and network connectivity, build time may vary.
+            _(e.g., 4-core CPU, 8GB RAM, SSD inside a VM using a
+            <a href="https://www.kali.org/docs/community/setting-up-a-kali-linux-mirror/" target="_blank" class="text-blue-400 underline">
+            local repo
+            </a> may take ~100 minutes per script.)_
+        </p>
+
+        <hr class="border-gray-700 my-6">
+
+        <h2 class="text-2xl font-bold mb-4">Help</h2>
+        <p class="mb-2">For any build script, use the <code>--help</code> option. Example:</p>
+
+        <div class="bg-gray-800 p-4 rounded-md">
+<pre class="whitespace-pre-wrap">
+$ ./raspberry-pi.sh --help
+Usage commands:
+# Architectures (arm64, armel, armhf)
+./raspberry-pi.sh --arch arm64 or ./raspberry-pi.sh -a armhf
+
+# Desktop manager (xfce, gnome, kde, i3, lxde, mate, e17 or none)
+./raspberry-pi.sh --desktop kde or ./raspberry-pi.sh --desktop=kde
+
+# Minimal image - no desktop manager
+./raspberry-pi.sh --minimal or ./raspberry-pi.sh -m
+
+# Slim image - no desktop manager & cli tools
+./raspberry-pi.sh --slim or ./raspberry-pi.sh -s
+
+# Enable debug & log file (./logs/<file>.log)
+./raspberry-pi.sh --debug or ./raspberry-pi.sh -d
+
+# Perform extra checks on the images build
+./raspberry-pi.sh --extra or ./raspberry-pi.sh -x
+
+# Help screen (this)
+./raspberry-pi.sh --help or ./raspberry-pi.sh -h
+</pre>
+        </div>
+
+        <hr class="border-gray-700 my-6">
+
+        <h2 class="text-2xl font-bold mb-4">Custom Values</h2>
+        <p class="mb-2">
+            Changing <code>builder.txt</code> will allow for custom values, such as using a local LAN mirror:
+        </p>
+
+        <div class="bg-gray-800 p-4 rounded-md">
+<pre class="whitespace-pre-wrap">
+$ echo 'mirror="http://192.168.1.100/kali"' > ./builder.txt
+</pre>
+</body>
+</html>
